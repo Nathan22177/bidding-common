@@ -1,18 +1,18 @@
-package com.nathan22177.biddingcommon.enums;
+package com.nathan22177.enums;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.nathan22177.biddingcommon.strategies.BiddingStrategy;
-import com.nathan22177.biddingcommon.strategies.CopycatStrategy;
-import com.nathan22177.biddingcommon.strategies.FairStrategy;
-import com.nathan22177.biddingcommon.strategies.LehaSVV2009Strategy;
-import com.nathan22177.biddingcommon.strategies.NathanStrategy;
-import com.nathan22177.biddingcommon.strategies.PyramidPlayerStrategy;
-import com.nathan22177.biddingcommon.strategies.RisingStrategy;
-import com.nathan22177.biddingcommon.strategies.SafeStrategy;
-import com.nathan22177.biddingcommon.strategies.WinnerIncrementStrategy;
+import com.nathan22177.strategies.BiddingStrategy;
+import com.nathan22177.strategies.CopycatStrategy;
+import com.nathan22177.strategies.FairStrategy;
+import com.nathan22177.strategies.LehaSVV2009Strategy;
+import com.nathan22177.strategies.NathanStrategy;
+import com.nathan22177.strategies.PyramidPlayerStrategy;
+import com.nathan22177.strategies.RisingStrategy;
+import com.nathan22177.strategies.SafeStrategy;
+import com.nathan22177.strategies.WinnerIncrementStrategy;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.nathan22177.biddingcommon.util;
+package com.nathan22177.util;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,9 +9,8 @@ import java.util.stream.Stream;
 import org.springframework.util.Assert;
 
 
-import com.nathan22177.biddingcommon.bidder.BidderImpl;
-
-import javafx.util.Pair;
+import com.nathan22177.bidder.BidderImpl;
+import com.nathan22177.collection.Pair;
 
 /**
  * Class with methods to use while implementing the strategy.
@@ -39,7 +38,7 @@ public class StrategyUtil {
         }
 
         double[] bids = history.stream()
-                .flatMap(pair -> Stream.of(pair.getKey(), pair.getValue()))
+                .flatMap(pair -> Stream.of(pair.getLeft(), pair.getRight()))
                 .mapToDouble(val -> val)
                 .sorted()
                 .toArray();
@@ -61,7 +60,7 @@ public class StrategyUtil {
      * */
     public static int getOpponentBalance(BidderImpl bidder) {
         return bidder.getBiddingHistory() != null
-                ? bidder.getInitialBalance() - bidder.getBiddingHistory().stream().mapToInt(Pair::getValue).sum()
+                ? bidder.getInitialBalance() - bidder.getBiddingHistory().stream().mapToInt(Pair::getRight).sum()
                 : bidder.getInitialBalance();
     }
 
@@ -81,7 +80,7 @@ public class StrategyUtil {
     public static List<Integer> getLastNBids(int n, BidderImpl bidder) {
         return bidder.getBiddingHistory()
                 .stream()
-                .map(Pair::getKey)
+                .map(Pair::getLeft)
                 .skip(bidder.getBiddingHistory().size() - n)
                 .collect(Collectors.toList());
     }
@@ -93,7 +92,7 @@ public class StrategyUtil {
     public static List<Integer> getLastNOpponentBids(int n, BidderImpl bidder) {
         return bidder.getBiddingHistory()
                 .stream()
-                .map(Pair::getValue)
+                .map(Pair::getRight)
                 .skip(bidder.getBiddingHistory().size() - n)
                 .collect(Collectors.toList());
     }
@@ -129,7 +128,7 @@ public class StrategyUtil {
      * */
     public static int getPreviousWinnerBid(BidderImpl bidder) {
         return bidder.getBiddingHistory() != null
-                ? Stream.of(bidder.getBiddingHistory().peekLast().getKey(), bidder.getBiddingHistory().peekLast().getValue())
+                ? Stream.of(bidder.getBiddingHistory().peekLast().getLeft(), bidder.getBiddingHistory().peekLast().getRight())
                 .mapToInt(value -> value)
                 .max()
                 .orElse(0)
@@ -164,7 +163,7 @@ public class StrategyUtil {
         }
         List<Integer> bids = bidder.getBiddingHistory()
                 .stream()
-                .map(Pair::getValue)
+                .map(Pair::getRight)
                 .sorted(Collections.reverseOrder())
                 .collect(Collectors.toList());
 
@@ -177,7 +176,7 @@ public class StrategyUtil {
      * @return bid
      * */
     public static int getLastOpponentBid(BidderImpl bidder) {
-        return bidder.getBiddingHistory().peekLast().getValue();
+        return bidder.getBiddingHistory().peekLast().getRight();
     }
 
     /***
@@ -196,7 +195,7 @@ public class StrategyUtil {
             return false;
         }
 
-        int lastBid = bidder.getBiddingHistory().peekLast().getValue();
+        int lastBid = bidder.getBiddingHistory().peekLast().getRight();
         return getLastNOpponentBids(n, bidder).stream().sorted(Collections.reverseOrder()).skip(1).allMatch(bid -> bid == lastBid);
     }
 }

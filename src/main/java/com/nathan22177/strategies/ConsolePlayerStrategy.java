@@ -1,9 +1,9 @@
-package com.nathan22177.biddingcommon.strategies;
+package com.nathan22177.strategies;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.nathan22177.biddingcommon.bidder.BidderImpl;
+import com.nathan22177.bidder.BidderImpl;
 
 /***
  * Enables to play against user.

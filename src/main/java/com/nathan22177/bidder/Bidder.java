@@ -1,4 +1,4 @@
-package com.nathan22177.biddingcommon.bidder;
+package com.nathan22177.bidder;
 
 /**
  * Represents a bidder for the action.

@@ -1,7 +1,7 @@
-package com.nathan22177.biddingcommon.strategies;
+package com.nathan22177.strategies;
 
-import com.nathan22177.biddingcommon.bidder.BidderImpl;
-import com.nathan22177.biddingcommon.util.StrategyUtil;
+import com.nathan22177.bidder.BidderImpl;
+import com.nathan22177.util.StrategyUtil;
 
 /***
 * Gradually raises bid so that would go with empty balance at the end.

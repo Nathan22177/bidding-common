@@ -1,4 +1,4 @@
-package com.nathan22177.biddingcommon.bidder;
+package com.nathan22177.bidder;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -6,10 +6,10 @@ import java.util.Random;
 
 import org.springframework.util.Assert;
 
-import com.nathan22177.biddingcommon.strategies.BiddingStrategy;
-import com.nathan22177.biddingcommon.strategies.NathanStrategy;
+import com.nathan22177.collection.Pair;
+import com.nathan22177.strategies.BiddingStrategy;
+import com.nathan22177.strategies.NathanStrategy;
 
-import javafx.util.Pair;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
