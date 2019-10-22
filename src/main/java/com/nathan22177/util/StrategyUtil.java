@@ -31,7 +31,7 @@ public class StrategyUtil {
      * @param history of all bids
      * @return median
      * */
-    private static int allBidsMedian(List<BiddingRound> history) {
+    public static int allBidsMedian(List<BiddingRound> history) {
 
         if (history == null) {
             return 0;
