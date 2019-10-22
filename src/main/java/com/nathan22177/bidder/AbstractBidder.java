@@ -8,7 +8,7 @@ import com.nathan22177.collection.BiddingRound;
 import lombok.Data;
 
 @Data
-public class AbstractBidder {
+public abstract class AbstractBidder {
     /***
      * Amount of cash left.
      * */

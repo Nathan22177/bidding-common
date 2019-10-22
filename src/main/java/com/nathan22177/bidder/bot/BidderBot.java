@@ -23,16 +23,6 @@ public class BidderBot extends AbstractBidder {
 
     private final Random random = new Random();
 
-    /***
-    * Constructor without implicitly specified strategy.
-    * */
-    public BidderBot(int quantity, int cash) {
-        Assert.isTrue(quantity % 2 == 0 && quantity > 0, "Quantity must be a positive and even number.");
-        Assert.isTrue(cash > 0, "Cash must be positive number.");
-        this.init(quantity, cash);
-        this.biddingStrategy = new NathanStrategy();
-    }
-
 
     public BidderBot(int quantity, int cash, BiddingStrategy strategy) {
         Assert.isTrue(quantity % 2 == 0 && quantity > 0, "Quantity must be a positive and even number.");
@@ -42,7 +32,7 @@ public class BidderBot extends AbstractBidder {
     }
 
 
-    public void init(int quantity, int cash) {
+    private void init(int quantity, int cash) {
         setBalance(cash);
         setAcquiredAmount(0);
         setInitialQuantity(quantity);
