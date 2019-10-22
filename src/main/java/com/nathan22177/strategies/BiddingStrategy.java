@@ -1,9 +1,9 @@
 package com.nathan22177.strategies;
 
-import com.nathan22177.bidder.BidderImpl;
+import com.nathan22177.bidder.bot.BidderBot;
 
 public interface BiddingStrategy {
 
-    int getBiddingAmount(BidderImpl bidder);
+    int getBiddingAmount(BidderBot bidder);
 
 }

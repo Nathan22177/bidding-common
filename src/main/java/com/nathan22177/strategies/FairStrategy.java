@@ -1,6 +1,6 @@
 package com.nathan22177.strategies;
 
-import com.nathan22177.bidder.BidderImpl;
+import com.nathan22177.bidder.bot.BidderBot;
 import com.nathan22177.util.StrategyUtil;
 
 /***
@@ -9,7 +9,7 @@ import com.nathan22177.util.StrategyUtil;
 public class FairStrategy implements BiddingStrategy {
 
     @Override
-    public int getBiddingAmount(BidderImpl bidder) {
+    public int getBiddingAmount(BidderBot bidder) {
         return StrategyUtil.getMeanPriceForOneUnit(bidder) * 2;
     }
 }

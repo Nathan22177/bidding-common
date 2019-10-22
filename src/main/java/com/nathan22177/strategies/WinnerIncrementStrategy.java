@@ -1,6 +1,6 @@
 package com.nathan22177.strategies;
 
-import com.nathan22177.bidder.BidderImpl;
+import com.nathan22177.bidder.bot.BidderBot;
 import com.nathan22177.util.StrategyUtil;
 
 /***
@@ -8,7 +8,7 @@ import com.nathan22177.util.StrategyUtil;
  * */
 public class WinnerIncrementStrategy implements BiddingStrategy {
 
-    private int calculateBiddingAmount(BidderImpl bidder) {
+    private int calculateBiddingAmount(BidderBot bidder) {
         if (StrategyUtil.bidderHasAdvantageOverItsOpponent(bidder)) {
             return StrategyUtil.getPreviousWinnerBid(bidder) + 1;
         } else {
@@ -17,7 +17,7 @@ public class WinnerIncrementStrategy implements BiddingStrategy {
     }
 
     @Override
-    public int getBiddingAmount(BidderImpl bidder) {
+    public int getBiddingAmount(BidderBot bidder) {
         int bid = calculateBiddingAmount(bidder);
         return bid >= 0 && bid <= bidder.getBalance()
                 ? bid

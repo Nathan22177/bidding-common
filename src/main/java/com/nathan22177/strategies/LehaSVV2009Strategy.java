@@ -1,6 +1,6 @@
 package com.nathan22177.strategies;
 
-import com.nathan22177.bidder.BidderImpl;
+import com.nathan22177.bidder.bot.BidderBot;
 import com.nathan22177.util.StrategyUtil;
 
 
@@ -11,14 +11,14 @@ import com.nathan22177.util.StrategyUtil;
 public class LehaSVV2009Strategy implements BiddingStrategy {
 
     @Override
-    public int getBiddingAmount(BidderImpl bidder) {
+    public int getBiddingAmount(BidderBot bidder) {
         int bid = calculateBiddingAmount(bidder);
         return bid >= 0 && bid <= bidder.getBalance()
                 ? bid
                 : 0;
     }
 
-    private static int calculateBiddingAmount(BidderImpl bidder) {
+    private static int calculateBiddingAmount(BidderBot bidder) {
         // Skip calculations if there is no cash or turns
         if (bidder.getBalance() == 0 || StrategyUtil.getRoundsLeft(bidder) == 0) {
             return 0;
