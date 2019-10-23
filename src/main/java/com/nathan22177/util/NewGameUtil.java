@@ -7,8 +7,8 @@ import com.nathan22177.game.PlayerVersusBotGame;
 import com.nathan22177.game.PlayerVersusPlayerGame;
 
 public class NewGameUtil {
-    public static PlayerVersusBotGame createNewGameAgainstTheBot(BidderPlayer bluePlayer, Opponent opponent) {
-        return new PlayerVersusBotGame(Conditions.getRandomConditions(), opponent, bluePlayer);
+    public static PlayerVersusBotGame createNewGameAgainstTheBot(Opponent opponent) {
+        return new PlayerVersusBotGame(Conditions.getRandomConditions(), opponent);
     }
 
     public static PlayerVersusPlayerGame createNewGameAgainstThePlayer(BidderPlayer bluePlayer) {

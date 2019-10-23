@@ -19,10 +19,10 @@ public class PlayerVersusBotGame extends AbstractGame{
     @OneToOne(cascade = CascadeType.ALL)
     BidderBot redPlayer;
 
-    public PlayerVersusBotGame(Conditions conditions, Opponent opponent, BidderPlayer bluePlayer) {
+    public PlayerVersusBotGame(Conditions conditions, Opponent opponent) {
         this.conditions = conditions;
         this.redPlayer = new BidderBot(conditions, opponent);
-        this.bluePlayer = bluePlayer;
+        this.bluePlayer = new BidderPlayer(conditions);
         this.status = Status.WAITING_FOR_BIDS;
     }
 

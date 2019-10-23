@@ -1,5 +1,6 @@
 package com.nathan22177.game;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.enums.Status;
@@ -24,7 +26,7 @@ public abstract class AbstractGame {
     @GeneratedValue
     Long id;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL)
     BidderPlayer bluePlayer;
 
     @Enumerated(EnumType.STRING)

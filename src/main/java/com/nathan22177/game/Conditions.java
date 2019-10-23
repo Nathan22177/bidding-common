@@ -13,8 +13,8 @@ import lombok.Getter;
 @Getter
 @Embeddable
 public class Conditions {
-    private final static List<Integer> cashPoll = Arrays.asList(1000, 5000, 20_000, 80_000);
     private final static List<Integer> quantityPoll = Arrays.asList(8, 16, 20);
+    private final static List<Integer> cashPoll = Arrays.asList(1000, 5000, 20_000, 80_000);
     private final static Random rand = new Random();
 
     private int quantity;
@@ -22,7 +22,7 @@ public class Conditions {
 
 
     public static Conditions getRandomConditions() {
-        return new Conditions(getRandomCondition(quantityPoll), getRandomCondition(quantityPoll));
+        return new Conditions(getRandomCondition(quantityPoll), getRandomCondition(cashPoll));
     }
 
     private static Integer getRandomCondition(List<Integer> poll) {
