@@ -33,8 +33,8 @@ public class StrategyUtilUnitTests {
     public void init() {
         startBalance = 10_000;
         startQuantity = 100;
-        bidder = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.RISING_BOT.getStrategy());
-        opponent = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.FAIR_BOT.getStrategy());
+        bidder = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.RISING_BOT);
+        opponent = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.FAIR_BOT);
         for (int i = 0; i < startQuantity / 2; i++) {
             int bidderBid = bidder.placeBidAndWithdraw();
             int opponentBid = opponent.placeBidAndWithdraw();

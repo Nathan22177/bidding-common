@@ -1,7 +1,5 @@
 package com.nathan22177.game;
 
-import org.springframework.util.Assert;
-
 import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.collection.BiddingRound;
@@ -13,9 +11,9 @@ import lombok.Data;
 public class PlayerVersusBotGame extends AbstractGame{
     BidderBot redPlayer;
 
-    public PlayerVersusBotGame(Conditions conditions, Opponent bot, BidderPlayer bluePlayer) {
+    public PlayerVersusBotGame(Conditions conditions, Opponent opponent, BidderPlayer bluePlayer) {
         this.conditions = conditions;
-        this.redPlayer = new BidderBot(conditions, bot.getStrategy());
+        this.redPlayer = new BidderBot(conditions, opponent);
         this.bluePlayer = bluePlayer;
     }
 

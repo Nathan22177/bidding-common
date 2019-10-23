@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.enums.Opponent;
 import com.nathan22177.game.Conditions;
-import com.nathan22177.strategies.BiddingStrategy;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,67 +25,67 @@ public class BidderBotsIntegrationTests {
     @Test
     public void NathanVsWinnerIncrementBidder() {
         // Wins or gets a draw 96 games out of 112 every test (≈ 85.7% win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.WIN_INC_BOT.getStrategy(), 95);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.WIN_INC_BOT, 95);
     }
 
     @Test
     public void NathanVsRaiseBidder() {
         // Wins or gets a draw 109 games out of 112 every test (≈ 97.3% win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.RISING_BOT.getStrategy(), 109);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.RISING_BOT, 109);
     }
 
     @Test
     public void NathanVsCopycat() {
         // Wins or gets a draw 95 games out of 112 every test (≈ 84.8% - 98.2%  win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.COPYCAT_BOT.getStrategy(), 96);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.COPYCAT_BOT, 96);
     }
 
     @Test
     public void NathanVsSafeBidder() {
         // Wins or gets a draw 109 games out of 112 every test (≈ 97.3% win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.SAFE_BOT.getStrategy(), 109);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.SAFE_BOT, 109);
     }
 
     @Test
     public void NathanVsFairBidder() {
         // Wins or gets a draw 102 games out of 112 every test (≈ 91.1%  win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.FAIR_BOT.getStrategy(), 102);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.FAIR_BOT, 102);
     }
 
     @Test
     public void NathanVsLehaSVV2009() {
         // Wins or gets a draw in at least 95 games every test, sometimes up to 110 times due to it's opponent randomised behaviour
         // (≈ 84.8% - 98.2%  win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.LEHASVV2009_BOT.getStrategy(), 95);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.LEHASVV2009_BOT, 95);
     }
 
     @Test
     public void NathanVsPyramidPlayer() {
         // Wins or gets a draw in at least 52 games every test, sometimes up to 70 times due to it's opponent randomised behaviour
         // (≈ 46.4% - 74.3%  win or draw rate)
-        twoStrategiesCompetition(Opponent.NATHAN22177_BOT.getStrategy(), Opponent.PYRAMID_PLAYER_BOT.getStrategy(), 52);
+        twoStrategiesCompetition(Opponent.NATHAN22177_BOT, Opponent.PYRAMID_PLAYER_BOT, 52);
     }
 
     @Test
     public void LehaSVV2009PyramidPlayer() {
         // Wins or gets a draw in at least 92 games every test, sometimes up to 110 times due to it's opponent randomised behaviour
         // (≈ 82.1% - 91.1%  win or draw rate)
-        twoStrategiesCompetition(Opponent.LEHASVV2009_BOT.getStrategy(), Opponent.PYRAMID_PLAYER_BOT.getStrategy(), 92);
+        twoStrategiesCompetition(Opponent.LEHASVV2009_BOT, Opponent.PYRAMID_PLAYER_BOT, 92);
     }
 
-    public void twoStrategiesCompetition(BiddingStrategy bidderStrategy, BiddingStrategy opponentStrategy, int winningThreshold) {
+    public void twoStrategiesCompetition(Opponent bidder, Opponent opponent, int winningThreshold) {
         int winOrDrawCount = 0;
         for (int cash : cashPoll) {
             for (int quantity : quantityPoll) {
-                BidderBot bidder = new BidderBot(new Conditions(quantity, cash), bidderStrategy);
-                BidderBot opponent = new BidderBot(new Conditions(quantity, cash), opponentStrategy);
+                BidderBot bidderBot = new BidderBot(new Conditions(quantity, cash), bidder);
+                BidderBot opponentBot = new BidderBot(new Conditions(quantity, cash), opponent);
                 for (int i = 0; i < quantity / 2; i++) {
-                    int bidderBid = bidder.placeBidAndWithdraw();
-                    int opponentBid = opponent.placeBidAndWithdraw();
-                    bidder.resolveBidsAndAppendHistory(bidderBid, opponentBid);
-                    opponent.resolveBidsAndAppendHistory(opponentBid, bidderBid);
+                    int bidderBid = bidderBot.placeBidAndWithdraw();
+                    int opponentBid = opponentBot.placeBidAndWithdraw();
+                    bidderBot.resolveBidsAndAppendHistory(bidderBid, opponentBid);
+                    opponentBot.resolveBidsAndAppendHistory(opponentBid, bidderBid);
                 }
-                if (bidder.getAcquiredAmount() >= opponent.getAcquiredAmount()) {
+                if (bidderBot.getAcquiredAmount() >= opponentBot.getAcquiredAmount()) {
                     winOrDrawCount++;
                 }
             }
