@@ -4,6 +4,7 @@ import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.collection.BiddingRound;
 import com.nathan22177.enums.Opponent;
+import com.nathan22177.enums.Status;
 
 import lombok.Data;
 
@@ -15,20 +16,22 @@ public class PlayerVersusBotGame extends AbstractGame{
         this.conditions = conditions;
         this.redPlayer = new BidderBot(conditions, opponent);
         this.bluePlayer = bluePlayer;
+        this.status = Status.WAITING_FOR_BIDS;
     }
 
-    public BiddingRound playerPlacesBid(Integer bluesBid) {
+    public BiddingRound playerPlacesBidVersusBot(Integer bluesBid) {
         int redsBid = getRedPlayer().getNextBid();
-        resolveBids(bluesBid, redsBid);
+        resolveBidsVersusBot(bluesBid, redsBid);
         return getRedPlayer().getBiddingHistory().peekLast();
     }
 
-    public void resolveBids(int bluesBid, int redsBid) {
+    public void resolveBidsVersusBot(int bluesBid, int redsBid) {
         BidderPlayer player = getBluePlayer();
         BidderBot bot = getRedPlayer();
         player.placeBidAndWithdraw(bluesBid);
         bot.placeBidAndWithdraw(redsBid);
         player.resolveBidsAndAppendHistory(bluesBid, redsBid);
         bot.resolveBidsAndAppendHistory(redsBid, bluesBid);
+        setStatus(Status.WAITING_FOR_BIDS);
     }
 }
