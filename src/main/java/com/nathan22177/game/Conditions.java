@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.nathan22177.bidder.BidderPlayer;
-import com.nathan22177.enums.Opponent;
+import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
+@Embeddable
 public class Conditions {
     private final static List<Integer> cashPoll = Arrays.asList(1000, 5000, 20_000, 80_000);
     private final static List<Integer> quantityPoll = Arrays.asList(8, 16, 20);
