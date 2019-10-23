@@ -1,6 +1,6 @@
 package com.nathan22177.strategies;
 
-import com.nathan22177.bidder.bot.BidderBot;
+import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.util.StrategyUtil;
 
 /***
@@ -14,16 +14,16 @@ public class NathanStrategy implements BiddingStrategy{
         /*
           We will always safely bet 2 until opponent runs out of cash.
         */
-        boolean thereAreMoreRoundsThanMonetaryUnits = bidder.getInitialQuantity() / 2 > bidder.getBalance();
+        boolean thereAreMoreRoundsThanMonetaryUnits = bidder.getConditions().getQuantity() / 2 > bidder.getBalance();
 
         int roundsLeft = StrategyUtil.getRoundsLeft(bidder);
-        int initialQuantity = bidder.getInitialQuantity();
+        int initialQuantity = bidder.getConditions().getQuantity();
 
         int medianBid = StrategyUtil.allBidsMedian(bidder) + initialQuantity;
         int defaultBid = !thereAreMoreRoundsThanMonetaryUnits
                 ? (bidder.getBalance() / (roundsLeft * 2)) + (initialQuantity - roundsLeft) + 2
                 : 1;
-        int price = bidder.getInitialBalance() / bidder.getInitialQuantity();
+        int price = bidder.getConditions().getCash() / bidder.getConditions().getQuantity();
 
         /*
           If opponent consistently bids the same amount we can easily outbid them.
@@ -53,10 +53,10 @@ public class NathanStrategy implements BiddingStrategy{
           If we can definitely win auction this round - we would like to do so
           by outbidding the opponent
           */
-        if (bidder.getAcquiredAmount() + 2 >= bidder.getInitialQuantity() / 2) {
+        if (bidder.getAcquiredAmount() + 2 >= bidder.getConditions().getQuantity() / 2) {
             if (StrategyUtil.bidderHasAdvantageOverItsOpponent(bidder)) {
                 return StrategyUtil.getOpponentBalance(bidder) + 1;
-            } else if (bidder.getInitialQuantity() == 2) {
+            } else if (bidder.getConditions().getQuantity() == 2) {
                 return bidder.getBalance();
             }
         }
@@ -78,7 +78,7 @@ public class NathanStrategy implements BiddingStrategy{
             /*
               Unless it is the only round or last round, then we go all-in.
              * */
-            if (bidder.getInitialQuantity() == 2 || StrategyUtil.getRoundsLeft(bidder) <= 1) {
+            if (bidder.getConditions().getQuantity() == 2 || StrategyUtil.getRoundsLeft(bidder) <= 1) {
                 return bidder.getBalance();
             }
 

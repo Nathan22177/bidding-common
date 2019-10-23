@@ -9,8 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.nathan22177.bidder.bot.BidderBot;
+import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.enums.Opponent;
+import com.nathan22177.game.Conditions;
 import com.nathan22177.strategies.BiddingStrategy;
 
 import lombok.extern.slf4j.Slf4j;
@@ -77,8 +78,8 @@ public class BidderBotsIntegrationTests {
         int winOrDrawCount = 0;
         for (int cash : cashPoll) {
             for (int quantity : quantityPoll) {
-                BidderBot bidder = new BidderBot(quantity, cash, bidderStrategy);
-                BidderBot opponent = new BidderBot(quantity, cash, opponentStrategy);
+                BidderBot bidder = new BidderBot(new Conditions(quantity, cash), bidderStrategy);
+                BidderBot opponent = new BidderBot(new Conditions(quantity, cash), opponentStrategy);
                 for (int i = 0; i < quantity / 2; i++) {
                     int bidderBid = bidder.placeBid();
                     int opponentBid = opponent.placeBid();
@@ -91,10 +92,5 @@ public class BidderBotsIntegrationTests {
             }
         }
         Assert.assertTrue(winOrDrawCount >= winningThreshold);
-    }
-    @Test
-    public void asdasda(){
-        System.out.println(20/2);
-        System.out.println(21/2);
     }
 }

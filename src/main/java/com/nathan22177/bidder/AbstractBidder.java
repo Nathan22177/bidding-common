@@ -4,8 +4,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 import com.nathan22177.collection.BiddingRound;
+import com.nathan22177.game.Conditions;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 public abstract class AbstractBidder {
@@ -20,14 +23,10 @@ public abstract class AbstractBidder {
     private int acquiredAmount;
 
     /***
-     * Initial amount of QUs.
+     * Initial cash and QU
      * */
-    private int initialQuantity;
-
-    /***
-     * Initial amount of MUs.
-     * */
-    private int initialBalance;
+    @Setter(AccessLevel.PACKAGE)
+    private Conditions conditions;
 
 
     /***

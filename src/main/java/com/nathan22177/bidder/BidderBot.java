@@ -1,10 +1,11 @@
-package com.nathan22177.bidder.bot;
+package com.nathan22177.bidder;
 
 import java.util.Random;
 
 import org.springframework.util.Assert;
 
 import com.nathan22177.bidder.AbstractBidder;
+import com.nathan22177.game.Conditions;
 import com.nathan22177.strategies.BiddingStrategy;
 import com.nathan22177.strategies.NathanStrategy;
 
@@ -24,20 +25,15 @@ public class BidderBot extends AbstractBidder {
     private final Random random = new Random();
 
 
-    public BidderBot(int quantity, int cash, BiddingStrategy strategy) {
-        Assert.isTrue(quantity % 2 == 0 && quantity > 0, "Quantity must be a positive and even number.");
-        Assert.isTrue(cash > 0, "Cash must be positive number.");
-        this.init(quantity, cash);
+    public BidderBot(Conditions conditions, BiddingStrategy strategy) {
+        Assert.isTrue(conditions.getQuantity() % 2 == 0 && conditions.getQuantity() > 0, "Quantity must be a positive and even number.");
+        Assert.isTrue(conditions.getCash() > 0, "Cash must be positive number.");
+        setConditions(conditions);
+        setBalance(conditions.getCash());
         this.biddingStrategy = strategy;
     }
 
 
-    private void init(int quantity, int cash) {
-        setBalance(cash);
-        setAcquiredAmount(0);
-        setInitialQuantity(quantity);
-        setInitialBalance(cash);
-    }
 
     public int placeBid() {
         int bid = this.biddingStrategy.getBiddingAmount(this);

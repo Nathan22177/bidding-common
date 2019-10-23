@@ -2,7 +2,7 @@ package com.nathan22177.game;
 
 import java.util.UUID;
 
-import com.nathan22177.bidder.player.BidderPlayer;
+import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.enums.Status;
 
 import lombok.AccessLevel;
@@ -16,8 +16,6 @@ abstract class AbstractGame {
     Status status;
 
     // We don't ever want it to be changed after first setting it upon creation
-    @Setter(AccessLevel.PACKAGE)
-    int initialCash;
-    @Setter(AccessLevel.PACKAGE)
-    int initialQuantity;
+    @Setter(AccessLevel.PRIVATE)
+    Conditions conditions;
 }

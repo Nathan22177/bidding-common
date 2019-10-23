@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import org.springframework.util.Assert;
 
 
-import com.nathan22177.bidder.bot.BidderBot;
+import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.collection.BiddingRound;
 
 /**
@@ -60,8 +60,8 @@ public class StrategyUtil {
      * */
     public static int getOpponentBalance(BidderBot bidder) {
         return bidder.getBiddingHistory() != null
-                ? bidder.getInitialBalance() - bidder.getBiddingHistory().stream().mapToInt(BiddingRound::getOpponentBid).sum()
-                : bidder.getInitialBalance();
+                ? bidder.getConditions().getCash() - bidder.getBiddingHistory().stream().mapToInt(BiddingRound::getOpponentBid).sum()
+                : bidder.getConditions().getCash();
     }
 
     /***
@@ -70,7 +70,7 @@ public class StrategyUtil {
      * @return price
      * */
     public static int getMeanPriceForOneUnit(BidderBot bidder) {
-        return bidder.getInitialBalance() / bidder.getInitialQuantity();
+        return bidder.getConditions().getCash() / bidder.getConditions().getQuantity();
     }
 
     /***
@@ -140,17 +140,17 @@ public class StrategyUtil {
      * to win.
      * */
     public static boolean bidderHasReachedTargetAmount(BidderBot bidder) {
-        return bidder.getAcquiredAmount() >= (bidder.getInitialQuantity() / 2) + 1;
+        return bidder.getAcquiredAmount() >= (bidder.getConditions().getQuantity() / 2) + 1;
     }
 
     public static int getRoundsLeft(BidderBot bidder) {
         return bidder.getBiddingHistory() == null
-                ? bidder.getInitialQuantity() / 2
-                : (bidder.getInitialQuantity() / 2) - bidder.getBiddingHistory().size();
+                ? bidder.getConditions().getQuantity() / 2
+                : (bidder.getConditions().getQuantity() / 2) - bidder.getBiddingHistory().size();
     }
 
     public static int getRoundsToWin(BidderBot bidder) {
-        return (bidder.getInitialQuantity() / 4) + 1;
+        return (bidder.getConditions().getQuantity() / 4) + 1;
     }
 
     /***

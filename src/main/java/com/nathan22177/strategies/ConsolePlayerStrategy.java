@@ -3,7 +3,7 @@ package com.nathan22177.strategies;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.nathan22177.bidder.bot.BidderBot;
+import com.nathan22177.bidder.BidderBot;
 
 /***
  * For manual testing trough terminal.

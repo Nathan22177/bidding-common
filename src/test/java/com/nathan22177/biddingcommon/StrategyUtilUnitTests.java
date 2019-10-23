@@ -11,9 +11,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.nathan22177.bidder.bot.BidderBot;
+import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.collection.BiddingRound;
 import com.nathan22177.enums.Opponent;
+import com.nathan22177.game.Conditions;
 import com.nathan22177.util.StrategyUtil;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +33,8 @@ public class StrategyUtilUnitTests {
     public void init() {
         startBalance = 10_000;
         startQuantity = 100;
-        bidder = new BidderBot(startQuantity, startBalance, Opponent.RISING_BOT.getStrategy());
-        opponent = new BidderBot(startQuantity, startBalance, Opponent.FAIR_BOT.getStrategy());
+        bidder = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.RISING_BOT.getStrategy());
+        opponent = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.FAIR_BOT.getStrategy());
         for (int i = 0; i < startQuantity / 2; i++) {
             int bidderBid = bidder.placeBid();
             int opponentBid = opponent.placeBid();

@@ -1,4 +1,4 @@
-package com.nathan22177.bidder.player;
+package com.nathan22177.bidder;
 
 import java.util.UUID;
 
