@@ -45,4 +45,9 @@ public class BidderBot extends AbstractBidder {
     public int getNextBid() {
         return this.biddingStrategy.getBiddingAmount(this);
     }
+
+    /**
+     * Used by JPA.
+     */
+    public BidderBot(){}
 }

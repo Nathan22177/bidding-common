@@ -19,7 +19,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
 @Data
-abstract class AbstractGame {
+public abstract class AbstractGame {
     @Id
     @GeneratedValue
     Long id;

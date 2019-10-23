@@ -43,7 +43,7 @@ public class PlayerVersusBotGame extends AbstractGame{
     }
 
     /**
-     * Don't really need it, nut it is used by JPA
+     * Used by JPA.
      */
-    private PlayerVersusBotGame(){}
+    public PlayerVersusBotGame(){}
 }

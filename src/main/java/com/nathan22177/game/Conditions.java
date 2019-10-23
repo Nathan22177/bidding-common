@@ -30,7 +30,7 @@ public class Conditions {
     }
 
     /**
-     * Don't really need it, nut it is used by JPA
+     * Used by JPA.
      */
-    private Conditions() {}
+    public Conditions() {}
 }
