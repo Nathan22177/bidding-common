@@ -18,12 +18,17 @@ public class PlayerVersusBotGame extends AbstractGame{
     }
 
     public BiddingRound playerPlacesBid(Integer bluesBid) {
+        int redsBid = getRedPlayer().getNextBid();
+        resolveBids(bluesBid, redsBid);
+        return getRedPlayer().getBiddingHistory().peekLast();
+    }
+
+    public void resolveBids(int bluesBid, int redsBid) {
         BidderPlayer player = getBluePlayer();
         BidderBot bot = getRedPlayer();
         player.placeBidAndWithdraw(bluesBid);
-        int redsBid = bot.placeBidAndWithdraw();
+        bot.placeBidAndWithdraw(redsBid);
         player.resolveBidsAndAppendHistory(bluesBid, redsBid);
         bot.resolveBidsAndAppendHistory(redsBid, bluesBid);
-        return player.getBiddingHistory().peekLast();
     }
 }

@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.springframework.util.Assert;
+
 import com.nathan22177.collection.BiddingRound;
 import com.nathan22177.game.Conditions;
 
@@ -71,5 +73,11 @@ public abstract class AbstractBidder {
         } else if (own == other) {
             acquire(1);
         }
+    }
+
+    public void placeBidAndWithdraw(int bid) {
+        Assert.isTrue(bid >= 0, "Bid should be positive number");
+        Assert.isTrue(bid <= getBalance(), "Bid should not be larger than amount of MU on the balance");
+        withdraw(bid);
     }
 }

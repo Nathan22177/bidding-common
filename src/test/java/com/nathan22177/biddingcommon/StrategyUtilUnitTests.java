@@ -36,9 +36,10 @@ public class StrategyUtilUnitTests {
         bidder = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.RISING_BOT);
         opponent = new BidderBot(new Conditions(startQuantity, startBalance), Opponent.FAIR_BOT);
         for (int i = 0; i < startQuantity / 2; i++) {
-            int bidderBid = bidder.placeBidAndWithdraw();
-            int opponentBid = opponent.placeBidAndWithdraw();
-
+            int bidderBid = bidder.getNextBid();
+            int opponentBid = opponent.getNextBid();
+            bidder.placeBidAndWithdraw(bidderBid);
+            opponent.placeBidAndWithdraw(opponentBid);
             bidder.resolveBidsAndAppendHistory(bidderBid, opponentBid);
             opponent.resolveBidsAndAppendHistory(opponentBid, bidderBid);
         }

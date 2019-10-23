@@ -80,8 +80,10 @@ public class BidderBotsIntegrationTests {
                 BidderBot bidderBot = new BidderBot(new Conditions(quantity, cash), bidder);
                 BidderBot opponentBot = new BidderBot(new Conditions(quantity, cash), opponent);
                 for (int i = 0; i < quantity / 2; i++) {
-                    int bidderBid = bidderBot.placeBidAndWithdraw();
-                    int opponentBid = opponentBot.placeBidAndWithdraw();
+                    int bidderBid = bidderBot.getNextBid();
+                    int opponentBid = opponentBot.getNextBid();
+                    bidderBot.placeBidAndWithdraw(bidderBid);
+                    opponentBot.placeBidAndWithdraw(opponentBid);
                     bidderBot.resolveBidsAndAppendHistory(bidderBid, opponentBid);
                     opponentBot.resolveBidsAndAppendHistory(opponentBid, bidderBid);
                 }
