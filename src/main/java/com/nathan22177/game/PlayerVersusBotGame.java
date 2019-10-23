@@ -1,5 +1,7 @@
 package com.nathan22177.game;
 
+import javax.persistence.Entity;
+
 import com.nathan22177.bidder.BidderBot;
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.collection.BiddingRound;
@@ -9,6 +11,7 @@ import com.nathan22177.enums.Status;
 import lombok.Data;
 
 @Data
+@Entity
 public class PlayerVersusBotGame extends AbstractGame{
     BidderBot redPlayer;
 

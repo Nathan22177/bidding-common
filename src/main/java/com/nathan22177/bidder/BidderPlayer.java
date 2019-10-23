@@ -10,7 +10,5 @@ import org.springframework.util.Assert;
 @Entity(name = "bidder_players")
 @Embeddable
 public class BidderPlayer extends AbstractBidder {
-    @Id
-    @GeneratedValue
-    Long id;
+
 }

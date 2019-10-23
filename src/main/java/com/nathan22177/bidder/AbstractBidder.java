@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
@@ -22,6 +24,10 @@ import lombok.Setter;
 @Entity
 @Data
 public abstract class AbstractBidder {
+    @Id
+    @GeneratedValue
+    Long id;
+
     /***
      * Amount of cash left.
      * */

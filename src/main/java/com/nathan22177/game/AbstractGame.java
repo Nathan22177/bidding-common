@@ -1,7 +1,5 @@
 package com.nathan22177.game;
 
-import java.util.UUID;
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -18,9 +16,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-@Data
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
+@Data
 abstract class AbstractGame {
     @Id
     @GeneratedValue
