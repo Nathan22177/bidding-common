@@ -11,7 +11,7 @@
     <groupId>com.nathan22177</groupId>
     <artifactId>bidding-common</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.22-SNAPSHOT</version>
+    <version>0.0.23-SNAPSHOT</version>
     <name>bidding-common</name>
     <description>Common code for bidding-server and bidding-client</description>
 
