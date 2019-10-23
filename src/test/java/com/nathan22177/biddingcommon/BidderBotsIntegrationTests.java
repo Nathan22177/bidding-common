@@ -81,10 +81,10 @@ public class BidderBotsIntegrationTests {
                 BidderBot bidder = new BidderBot(new Conditions(quantity, cash), bidderStrategy);
                 BidderBot opponent = new BidderBot(new Conditions(quantity, cash), opponentStrategy);
                 for (int i = 0; i < quantity / 2; i++) {
-                    int bidderBid = bidder.placeBid();
-                    int opponentBid = opponent.placeBid();
-                    bidder.bids(bidderBid, opponentBid);
-                    opponent.bids(opponentBid, bidderBid);
+                    int bidderBid = bidder.placeBidAndWithdraw();
+                    int opponentBid = opponent.placeBidAndWithdraw();
+                    bidder.resolveBidsAndAppendHistory(bidderBid, opponentBid);
+                    opponent.resolveBidsAndAppendHistory(opponentBid, bidderBid);
                 }
                 if (bidder.getAcquiredAmount() >= opponent.getAcquiredAmount()) {
                     winOrDrawCount++;

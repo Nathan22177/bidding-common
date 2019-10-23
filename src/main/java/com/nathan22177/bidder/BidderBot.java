@@ -34,13 +34,11 @@ public class BidderBot extends AbstractBidder {
     }
 
 
-
-    public int placeBid() {
+    public int placeBidAndWithdraw() {
         int bid = this.biddingStrategy.getBiddingAmount(this);
         Assert.isTrue(bid >= 0, "Bid should be positive number");
         Assert.isTrue(bid <= getBalance(), "Bid should not be larger than amount of MU on the balance");
-
-        return withdraw(bid);
-
+        withdraw(bid);
+        return bid;
     }
 }

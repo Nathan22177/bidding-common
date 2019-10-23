@@ -44,26 +44,28 @@ public abstract class AbstractBidder {
     @ElementCollection
     private LinkedList<BiddingRound> biddingHistory;
 
-    protected int withdraw(int cash) {
+    protected void withdraw(int cash) {
         this.balance -= cash;
-        return cash;
     }
 
     private void acquire(int quantity) {
         this.acquiredAmount += quantity;
     }
 
-    public void bids(int own, int other) {
-        addToBiddingHistory(own, other);
+    public void resolveBidsAndAppendHistory(int own, int other) {
+        appendBiddingHistory(own, other);
+        resolveBids(own, other);
     }
 
-    private void addToBiddingHistory(int own, int other) {
+    private void appendBiddingHistory(int own, int other) {
         if (getBiddingHistory() == null) {
             setBiddingHistory(new LinkedList<>(Collections.singletonList(new BiddingRound(own, other))));
         } else {
             getBiddingHistory().add(new BiddingRound(own, other));
         }
+    }
 
+    private void resolveBids(int own, int other) {
         if (other < own) {
             acquire(2);
         } else if (own == other) {

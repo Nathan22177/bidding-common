@@ -18,6 +18,5 @@ public class PlayerVersusPlayerGame extends AbstractGame {
     public PlayerVersusPlayerGame(Conditions conditions, BidderPlayer bluePlayer) {
         this.conditions = conditions;
         this.bluePlayer = bluePlayer;
-        this.status = Status.JUST_STARTED;
     }
 }
