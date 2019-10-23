@@ -1,7 +1,5 @@
 package com.nathan22177.game;
 
-import java.util.UUID;
-
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.enums.Opponent;
 import com.nathan22177.enums.Status;
@@ -14,7 +12,6 @@ public class PlayerVersusPlayerGame extends AbstractGame {
 
     public PlayerVersusPlayerGame(Conditions conditions, Opponent bot, BidderPlayer bluePlayer, BidderPlayer redPlayer) {
         this.conditions = conditions;
-        this.id = UUID.randomUUID();
         this.redPlayer = redPlayer;
         this.bluePlayer = bluePlayer;
         this.status = Status.JUST_STARTED;

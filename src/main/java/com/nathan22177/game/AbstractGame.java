@@ -2,6 +2,9 @@ package com.nathan22177.game;
 
 import java.util.UUID;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.enums.Status;
 
@@ -11,7 +14,9 @@ import lombok.Setter;
 
 @Data
 abstract class AbstractGame {
-    UUID id;
+    @Id
+    @GeneratedValue
+    Long id;
     BidderPlayer bluePlayer;
     Status status;
 

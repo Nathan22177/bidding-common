@@ -1,13 +1,9 @@
 package com.nathan22177.bidder;
 
-import java.util.UUID;
-
-import com.nathan22177.bidder.AbstractBidder;
-
 import lombok.Data;
 
 @Data
 public class BidderPlayer extends AbstractBidder {
-    UUID id;
+    Long id;
     String name;
 }

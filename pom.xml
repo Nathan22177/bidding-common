@@ -11,7 +11,7 @@
     <groupId>com.nathan22177</groupId>
     <artifactId>bidding-common</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.23-SNAPSHOT</version>
+    <version>0.0.25-SNAPSHOT</version>
     <name>bidding-common</name>
     <description>Common code for bidding-server and bidding-client</description>
 
@@ -123,6 +123,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.2.0.RELEASE</version>
         </dependency>
     </dependencies>
 
