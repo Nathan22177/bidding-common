@@ -2,6 +2,10 @@ package com.nathan22177.bidder;
 
 import java.util.Random;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import org.springframework.util.Assert;
 
 import com.nathan22177.enums.Opponent;
@@ -14,12 +18,15 @@ import lombok.Setter;
 
 @Getter
 @Setter(AccessLevel.PRIVATE)
+@Entity(name = "bidder_bots")
 public class BidderBot extends AbstractBidder {
 
     /***
      * Strategy that defines how to bid.
      * */
+    @Transient
     private BiddingStrategy biddingStrategy;
+    @Embedded
     private String title;
 
     private final Random random = new Random();

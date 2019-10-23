@@ -128,7 +128,7 @@ public class StrategyUtil {
      * */
     public static int getPreviousWinnerBid(BidderBot bidder) {
         return bidder.getBiddingHistory() != null
-                ? Stream.of(bidder.getBiddingHistory().peekLast().getOwnBid(), bidder.getBiddingHistory().peekLast().getOpponentBid())
+                ? Stream.of(bidder.getBiddingHistory().get(bidder.getBiddingHistory().size() - 1).getOwnBid(), bidder.getBiddingHistory().get(bidder.getBiddingHistory().size()-1).getOpponentBid())
                 .mapToInt(value -> value)
                 .max()
                 .orElse(0)
@@ -176,7 +176,7 @@ public class StrategyUtil {
      * @return bid
      * */
     public static int getLastOpponentBid(BidderBot bidder) {
-        return bidder.getBiddingHistory().peekLast().getOpponentBid();
+        return bidder.getBiddingHistory().get(bidder.getBiddingHistory().size()-1).getOpponentBid();
     }
 
     /***
@@ -195,7 +195,7 @@ public class StrategyUtil {
             return false;
         }
 
-        int lastBid = bidder.getBiddingHistory().peekLast().getOpponentBid();
+        int lastBid = bidder.getBiddingHistory().get(bidder.getBiddingHistory().size()-1).getOpponentBid();
         return getLastNOpponentBids(n, bidder).stream().sorted(Collections.reverseOrder()).skip(1).allMatch(bid -> bid == lastBid);
     }
 }

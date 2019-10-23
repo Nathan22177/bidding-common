@@ -2,7 +2,9 @@ package com.nathan22177.bidder;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 import org.springframework.util.Assert;
 
@@ -49,8 +53,9 @@ public abstract class AbstractBidder {
     /***
      * LIFO bidding history.
      * */
-    @ElementCollection
-    private LinkedList<BiddingRound> biddingHistory;
+    @OneToMany(cascade = CascadeType.ALL)
+    @OrderColumn
+    private List<BiddingRound> biddingHistory;
 
     protected void withdraw(int cash) {
         this.balance -= cash;

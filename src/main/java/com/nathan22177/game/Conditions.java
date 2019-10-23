@@ -20,6 +20,7 @@ public class Conditions {
     private int quantity;
     private int cash;
 
+
     public static Conditions getRandomConditions() {
         return new Conditions(getRandomCondition(quantityPoll), getRandomCondition(quantityPoll));
     }
@@ -27,4 +28,9 @@ public class Conditions {
     private static Integer getRandomCondition(List<Integer> poll) {
         return poll.get(rand.nextInt(poll.size()));
     }
+
+    /**
+     * Don't really need it, nut it is used by JPA
+     */
+    private Conditions() {}
 }
