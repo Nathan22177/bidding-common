@@ -7,7 +7,10 @@ import org.springframework.util.Assert;
 
 import com.nathan22177.game.Conditions;
 
-@Entity(name = "bidder_players")
+import lombok.Getter;
+
+@Entity
+@Getter
 public class BidderPlayer extends AbstractBidder {
 
     @Embedded
@@ -19,6 +22,7 @@ public class BidderPlayer extends AbstractBidder {
         setConditions(conditions);
         setBalance(conditions.getCash());
         setAcquiredAmount(0);
+        this.name = "local";
     }
 
     /**

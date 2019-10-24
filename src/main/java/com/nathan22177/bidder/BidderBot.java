@@ -15,7 +15,7 @@ import com.nathan22177.strategies.BiddingStrategy;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity(name = "bidder_bots")
+@Entity
 @Getter
 @Setter
 public class BidderBot extends AbstractBidder {

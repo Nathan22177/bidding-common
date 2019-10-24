@@ -23,7 +23,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-abstract class AbstractGame {
+public abstract class AbstractGame {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
