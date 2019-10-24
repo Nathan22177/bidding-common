@@ -13,12 +13,15 @@ import com.nathan22177.game.Conditions;
 import com.nathan22177.strategies.BiddingStrategy;
 
 import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity(name = "bidder_bots")
 @Getter
 @Setter(AccessLevel.PRIVATE)
-@Entity(name = "bidder_bots")
+@EqualsAndHashCode(callSuper = true)
 public class BidderBot extends AbstractBidder {
 
     /***

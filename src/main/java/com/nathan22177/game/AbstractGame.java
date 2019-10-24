@@ -18,7 +18,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance
 @Entity
 @Data
 public abstract class AbstractGame {

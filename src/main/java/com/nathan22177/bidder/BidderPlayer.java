@@ -10,7 +10,9 @@ import org.springframework.util.Assert;
 import com.nathan22177.game.Conditions;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity(name = "bidder_players")
 @Data
 public class BidderPlayer extends AbstractBidder {

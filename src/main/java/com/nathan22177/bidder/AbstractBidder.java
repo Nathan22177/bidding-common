@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance
 @Entity
 @Data
 public abstract class AbstractBidder {
