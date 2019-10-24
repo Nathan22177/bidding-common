@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,16 +20,16 @@ import org.springframework.util.Assert;
 import com.nathan22177.collection.BiddingRound;
 import com.nathan22177.game.Conditions;
 
-import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 
-@Inheritance
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Entity
-@Data
+@Getter
+@Setter
 public abstract class AbstractBidder {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     /***
@@ -44,7 +45,7 @@ public abstract class AbstractBidder {
     /***
      * Initial cash and QU
      * */
-    @Setter(AccessLevel.PACKAGE)
+
     @Embedded
     private Conditions conditions;
 
@@ -56,7 +57,8 @@ public abstract class AbstractBidder {
     @OrderColumn
     private List<BiddingRound> biddingHistory;
 
-    protected void withdraw(int cash) {
+
+    private void withdraw(int cash) {
         this.balance -= cash;
     }
 

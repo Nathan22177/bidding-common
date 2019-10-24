@@ -12,16 +12,12 @@ import com.nathan22177.enums.Opponent;
 import com.nathan22177.game.Conditions;
 import com.nathan22177.strategies.BiddingStrategy;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity(name = "bidder_bots")
 @Getter
-@Setter(AccessLevel.PRIVATE)
-@EqualsAndHashCode(callSuper = true)
+@Setter
 public class BidderBot extends AbstractBidder {
 
     /***
@@ -40,6 +36,7 @@ public class BidderBot extends AbstractBidder {
         Assert.isTrue(conditions.getCash() > 0, "Cash must be positive number.");
         setConditions(conditions);
         setBalance(conditions.getCash());
+        setAcquiredAmount(0);
         this.biddingStrategy = opponent.getStrategy();
         this.title = opponent.getTitle();
     }

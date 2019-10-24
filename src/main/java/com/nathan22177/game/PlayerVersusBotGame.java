@@ -10,9 +10,11 @@ import com.nathan22177.collection.BiddingRound;
 import com.nathan22177.enums.Opponent;
 import com.nathan22177.enums.Status;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @Entity
 public class PlayerVersusBotGame extends AbstractGame{
 
