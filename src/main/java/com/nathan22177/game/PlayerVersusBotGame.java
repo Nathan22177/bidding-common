@@ -31,8 +31,52 @@ public class PlayerVersusBotGame extends AbstractGame{
     public BiddingRound playerPlacesBidVersusBot(Integer bluesBid) {
         int redsBid = getRedPlayer().getNextBid();
         resolveBidsVersusBot(bluesBid, redsBid);
+        if (theGameHasEnded()){
+            resolveGamesEnd();
+        }
         return getRedPlayer().getBiddingHistory().get(getRedPlayer().getBiddingHistory().size() - 1);
     }
+
+    public boolean theGameHasEnded() {
+        return getRedPlayer().getAcquiredAmount() + getBluePlayer().getAcquiredAmount() == getConditions().getQuantity();
+    }
+
+    void resolveGamesEnd() {
+        if (redHasMoreQuantity()) {
+            setStatus(Status.RED_WON);
+        } else if (blueHasMoreQuantity()) {
+            setStatus(Status.BLUE_WON);
+        } else {
+            resolveDraw();
+        }
+    }
+
+    void resolveDraw() {
+        if (redHasMoreCash()) {
+            setStatus(Status.RED_WON);
+        } else if (blueHasMoreCash()) {
+            setStatus(Status.BLUE_WON);
+        } else {
+            setStatus(Status.DRAW);
+        }
+    }
+
+    boolean redHasMoreQuantity() {
+        return getRedPlayer().getAcquiredAmount() > getBluePlayer().getAcquiredAmount();
+    }
+
+    boolean blueHasMoreQuantity() {
+        return getRedPlayer().getAcquiredAmount() < getBluePlayer().getAcquiredAmount();
+    }
+
+    boolean redHasMoreCash() {
+        return getRedPlayer().getBalance() > getBluePlayer().getBalance();
+    }
+
+    boolean blueHasMoreCash() {
+        return getRedPlayer().getBalance() < getBluePlayer().getBalance();
+    }
+
 
     public void resolveBidsVersusBot(int bluesBid, int redsBid) {
         BidderPlayer player = getBluePlayer();
