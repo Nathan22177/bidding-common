@@ -41,7 +41,8 @@ public class LehaSVV2009Strategy implements BiddingStrategy {
         }
 
         // First bid is always small to not waste all money from the start (the algorithm is aggressive)
-        if (bidder.getBiddingHistory() != null && bidder.getBiddingHistory().size() == 0) {
+        if (bidder.getBiddingHistory() != null
+                && bidder.getBiddingHistory().size() == 0) {
             int firstBid = bidder.getRandom().nextBoolean() ? 1 : 2;
             return firstBid > bidder.getBalance()
                     ? bidder.getRandom().nextInt(bidder.getBalance())

@@ -59,7 +59,7 @@ public class StrategyUtil {
      * @return current balance
      * */
     public static int getOpponentBalance(BidderBot bidder) {
-        return bidder.getBiddingHistory() != null
+        return bidder.getBiddingHistory() != null && bidder.getBiddingHistory().size() > 0
                 ? bidder.getConditions().getCash() - bidder.getBiddingHistory().stream().mapToInt(BiddingRound::getOpponentBid).sum()
                 : bidder.getConditions().getCash();
     }
@@ -102,7 +102,7 @@ public class StrategyUtil {
      * mean price of two QUs for last {@param n} bids.
      * */
     public static boolean bidsOverMeanPriceForNRounds(BidderBot bidder, int n) {
-        if (bidder.getBiddingHistory() == null
+        if (bidder.getBiddingHistory() == null || bidder.getBiddingHistory().size() == 0
                 || bidder.getBiddingHistory().size() < n
                 || n <= 1) {
             return false;
@@ -115,7 +115,7 @@ public class StrategyUtil {
      * than their opponent.
      * */
     public static boolean bidderHasAdvantageOverItsOpponent(BidderBot bidder) {
-        if (bidder.getBiddingHistory() == null) {
+        if (bidder.getBiddingHistory() == null  || bidder.getBiddingHistory().size() == 0) {
             return false;
         }
         return bidder.getBalance() > getOpponentBalance(bidder);
@@ -127,7 +127,7 @@ public class StrategyUtil {
      * @return bid
      * */
     public static int getPreviousWinnerBid(BidderBot bidder) {
-        return bidder.getBiddingHistory() != null
+        return bidder.getBiddingHistory() != null && bidder.getBiddingHistory().size() > 0
                 ? Stream.of(bidder.getBiddingHistory().get(bidder.getBiddingHistory().size() - 1).getOwnBid(), bidder.getBiddingHistory().get(bidder.getBiddingHistory().size()-1).getOpponentBid())
                 .mapToInt(value -> value)
                 .max()
@@ -144,7 +144,7 @@ public class StrategyUtil {
     }
 
     public static int getRoundsLeft(BidderBot bidder) {
-        return bidder.getBiddingHistory() == null
+        return bidder.getBiddingHistory() == null  || bidder.getBiddingHistory().size() == 0
                 ? bidder.getConditions().getQuantity() / 2
                 : (bidder.getConditions().getQuantity() / 2) - bidder.getBiddingHistory().size();
     }
@@ -184,14 +184,14 @@ public class StrategyUtil {
      * the same amount for the last {@param n} rounds.
      * */
     public static boolean opponentBidsTheSameLastNRounds(int n, BidderBot bidder) {
-        if (bidder.getBiddingHistory() == null) {
+        if (bidder.getBiddingHistory() == null  || bidder.getBiddingHistory().size() == 0) {
             return false;
         }
 
         Assert.isTrue(n > 1, "Can't check if he bids the same if we only check 1 or less round");
         Assert.isTrue(bidder.getBiddingHistory().size() >= n, "Can't check for not existing rounds");
 
-        if (bidder.getBiddingHistory() == null) {
+        if (bidder.getBiddingHistory() == null  || bidder.getBiddingHistory().size() == 0) {
             return false;
         }
 

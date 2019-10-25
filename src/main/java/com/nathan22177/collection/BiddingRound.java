@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,11 +18,16 @@ public class BiddingRound {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    private final int ownBid;
-    private final int opponentBid;
+    private int ownBid;
+    private int opponentBid;
 
     public BiddingRound(int own, int opponent){
         this.ownBid = own;
         this.opponentBid = opponent;
     }
+
+    /**
+     * Used by JPA.
+     */
+    public BiddingRound(){}
 }

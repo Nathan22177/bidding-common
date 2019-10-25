@@ -72,7 +72,7 @@ public class NathanStrategy implements BiddingStrategy{
           Although we want to skip it if we are playing against always raising opponent.
          */
         if (!StrategyUtil.opponentAlwaysRaises(bidder)
-                && (bidder.getBiddingHistory() == null
+                && (bidder.getBiddingHistory() == null  || bidder.getBiddingHistory().size() == 0
                 || StrategyUtil.bidsOverMeanPriceForNRounds(bidder, 4))) {
 
             /*

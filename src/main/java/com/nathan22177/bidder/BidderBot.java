@@ -4,6 +4,8 @@ import java.util.Random;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
 import org.springframework.util.Assert;
@@ -23,8 +25,8 @@ public class BidderBot extends AbstractBidder {
     /***
      * Strategy that defines how to bid.
      * */
-    @Transient
-    private BiddingStrategy biddingStrategy;
+    @Enumerated(EnumType.STRING)
+    private Opponent opponent;
     @Embedded
     private String title;
 
@@ -37,13 +39,13 @@ public class BidderBot extends AbstractBidder {
         setConditions(conditions);
         setBalance(conditions.getCash());
         setAcquiredAmount(0);
-        this.biddingStrategy = opponent.getStrategy();
+        this.opponent = opponent;
         this.title = opponent.getTitle();
     }
 
 
     public int getNextBid() {
-        return this.biddingStrategy.getBiddingAmount(this);
+        return this.opponent.getStrategy().getBiddingAmount(this);
     }
 
     /**

@@ -1,7 +1,5 @@
 package com.nathan22177.game.dto;
 
-import java.util.List;
-
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.collection.BiddingRound;
 import com.nathan22177.game.Conditions;
@@ -14,13 +12,13 @@ public class StateDTO {
     private int balance;
     private int acquiredAmount;
     private Conditions conditions;
-    private List<BiddingRound> biddingHistory;
+    private BiddingRound biddingRound;
 
     public StateDTO(PlayerVersusBotGame game) {
         BidderPlayer player = game.getBluePlayer();
         this.balance = player.getBalance();
         this.acquiredAmount = player.getBalance();
-        this.biddingHistory = player.getBiddingHistory();
+        this.biddingRound = player.getBiddingHistory().get(player.getBiddingHistory().size() - 1);
         this.conditions = game.getConditions();
     }
 }
