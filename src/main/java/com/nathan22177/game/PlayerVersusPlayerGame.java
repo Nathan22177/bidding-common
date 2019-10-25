@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class PlayerVersusPlayerGame extends AbstractGame {
+public class PlayerVersusPlayerGame extends AbstractGame implements Game{
 
     @OneToOne(cascade = CascadeType.ALL)
     BidderPlayer redPlayer;
@@ -20,5 +20,10 @@ public class PlayerVersusPlayerGame extends AbstractGame {
     public PlayerVersusPlayerGame(Conditions conditions, BidderPlayer bluePlayer) {
         this.conditions = conditions;
         this.bluePlayer = bluePlayer;
+    }
+
+    @Override
+    public BidderPlayer getRedPlayer() {
+        return this.redPlayer;
     }
 }

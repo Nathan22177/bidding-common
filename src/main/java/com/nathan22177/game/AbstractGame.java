@@ -12,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 
+import com.nathan22177.bidder.AbstractBidder;
 import com.nathan22177.bidder.BidderPlayer;
 import com.nathan22177.enums.Status;
 
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-public abstract class AbstractGame {
+public abstract class AbstractGame implements Game{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -38,4 +39,7 @@ public abstract class AbstractGame {
     @Setter(AccessLevel.PRIVATE)
     @Embedded
     Conditions conditions;
+
+    @Override
+    public AbstractBidder getRedPlayer() {return null;}
 }
