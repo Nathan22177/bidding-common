@@ -33,15 +33,17 @@ public class StrategyUtil {
      * */
     public static int allBidsMedian(List<BiddingRound> history) {
 
-        if (history == null) {
-            return 0;
-        }
+
 
         double[] bids = history.stream()
                 .flatMap(biddingRound -> Stream.of(biddingRound.getOwnBid(), biddingRound.getOpponentBid()))
                 .mapToDouble(val -> val)
                 .sorted()
                 .toArray();
+        if (bids.length == 0) {
+            return 0;
+        }
+
         if (bids.length == 1) {
             return (int) bids[0];
         }

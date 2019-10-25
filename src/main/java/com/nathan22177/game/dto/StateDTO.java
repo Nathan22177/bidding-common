@@ -17,7 +17,7 @@ public class StateDTO {
     public StateDTO(PlayerVersusBotGame game) {
         BidderPlayer player = game.getBluePlayer();
         this.balance = player.getBalance();
-        this.acquiredAmount = player.getBalance();
+        this.acquiredAmount = player.getAcquiredAmount();
         this.biddingRound = player.getBiddingHistory().get(player.getBiddingHistory().size() - 1);
         this.conditions = game.getConditions();
     }
