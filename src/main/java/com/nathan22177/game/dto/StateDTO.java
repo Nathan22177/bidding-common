@@ -14,7 +14,11 @@ public class StateDTO {
     private int acquiredAmount;
     private Conditions conditions;
     private BiddingRound biddingRound;
+    private int opponentBalance;
+    private int opponentAcquiredAmount;
+    private int roundsLeft;
     private Status status;
+
 
     public StateDTO(PlayerVersusBotGame game) {
         BidderPlayer player = game.getBluePlayer();
@@ -23,5 +27,8 @@ public class StateDTO {
         this.biddingRound = player.getBiddingHistory().get(player.getBiddingHistory().size() - 1);
         this.conditions = game.getConditions();
         this.status = game.getStatus();
+        this.opponentBalance = game.getRedPlayer().getBalance();
+        this.opponentAcquiredAmount = game.getRedPlayer().getAcquiredAmount();
+        this.roundsLeft = (game.getConditions().getQuantity() / 2) - player.getBiddingHistory().size();
     }
 }
