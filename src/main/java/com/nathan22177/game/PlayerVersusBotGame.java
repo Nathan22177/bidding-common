@@ -11,7 +11,6 @@ import com.nathan22177.enums.Opponent;
 import com.nathan22177.enums.Status;
 import com.nathan22177.util.EndGameUtil;
 
-import lombok.Getter;
 import lombok.Setter;
 
 @Setter
